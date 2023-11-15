@@ -1,20 +1,20 @@
 
 
 <?php
-//Link a github: https://github.com/trisml/ExamenDWES.git
+//Link a github: https://github.com/trisml/Examen_DWES_3.0.git
 require_once 'vista.php';
 
 class Articulo {
     public $nombre;
     public $coste;
     public $precio;
-    public $contador;
+    public $cantidad;
 
-    public function __construct($nombre, $coste, $precio, $contador) {
+    public function __construct($nombre, $coste, $precio, $cantidad) {
         $this->nombre = $nombre;
         $this->coste = $coste;
         $this->precio = $precio;
-        $this->contador = $contador;
+        $this->cantidad = $cantidad;
     }
 
     public function getNombre() {
@@ -29,8 +29,8 @@ class Articulo {
         return $this->precio;
     }
 
-    public function getContador() {
-        return $this->contador;
+    public function getCantidad() {
+        return $this->cantidad;
     }
  
     public function setNombre($nombre) {
@@ -45,16 +45,16 @@ class Articulo {
         $this->precio = $precio;
     }
 
-    public function setContador($contador) {
-        $this->contador = $contador;
+    public function setCantidad($cantidad) {
+        $this->cantidad = $cantidad;
     }
 }
 
 class Pizza extends Articulo {
     public $ingredientes;
 
-    public function __construct($nombre, $coste, $precio, $contador, $ingredientes) {
-        parent::__construct($nombre, $coste, $precio, $contador);
+    public function __construct($nombre, $coste, $precio, $cantidad, $ingredientes) {
+        parent::__construct($nombre, $coste, $precio, $cantidad);
         $this->ingredientes = $ingredientes;
     }
 
@@ -70,8 +70,8 @@ class Pizza extends Articulo {
 class Bebida extends Articulo {
     public $alcoholica;
 
-    public function __construct($nombre, $coste, $precio, $contador, $alcoholica) {
-        parent::__construct($nombre, $coste, $precio, $contador);
+    public function __construct($nombre, $coste, $precio, $cantidad, $alcoholica) {
+        parent::__construct($nombre, $coste, $precio, $cantidad);
         $this->alcoholica = $alcoholica;
     }
 
@@ -96,7 +96,7 @@ $articulos = [
 ];
 
 mostrarMenu($articulos);
-mostrarMasVendidos($articulos);
-mostrarMasLucrativos($articulos);
+masVendidos($articulos);
+mostrarLucrativos($articulos);
 ?>
 

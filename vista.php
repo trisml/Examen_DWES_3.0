@@ -9,28 +9,28 @@
 
 <body>
 
-    <h1>Bienvenido a Mamma mía!</h1>
+    <h1>Bienvenido a Mamma mía! Tu pizzeria de confianza</h1>
 
     <?php
     function mostrarMenu($articulos)
     {
-        echo "<h2>Nuestro menú</h2>";
+        echo "<h1>Nuestro menú</h1>";
 
-        echo "<h3>Pizzas</h3>";
+        echo "<h2>Pizzas</h2>";
         foreach ($articulos as $articulo) {
             if ($articulo instanceof Pizza) {
                 echo "{$articulo->nombre}<br>";
             }
         }
 
-        echo "<h3>Bebidas</h3>";
+        echo "<h2>Bebidas</h2>";
         foreach ($articulos as $articulo) {
             if ($articulo instanceof Bebida) {
                 echo "{$articulo->nombre}<br>";
             }
         }
 
-        echo "<h3>Otros</h3>";
+        echo "<h2>Otros</h2>";
         foreach ($articulos as $articulo) {
             if (!($articulo instanceof Pizza) && !($articulo instanceof Bebida)) {
                 echo "{$articulo->nombre}<br>";
@@ -38,32 +38,32 @@
         }
     }
 
-    function mostrarMasVendidos($articulos)
+    function masVendidos($articulos)
     {
-        echo "<h2>Los más vendidos</h2>";
+        echo "<h1>Los más vendidos</h1>";
 
         usort($articulos, function ($a, $b) {
-            return $b->contador - $a->contador;
+            return $b->cantidad - $a->cantidad;
         });
 
         for ($i = 0; $i < 3; $i++) {
-            echo "{$articulos[$i]->nombre} - Vendidos : {$articulos[$i]->contador} unidades<br>";
+            echo "{$articulos[$i]->nombre} - Vendidos : {$articulos[$i]->cantidad} unidades<br>";
         }
     }
 
-    function mostrarMasLucrativos($articulos)
+    function mostrarLucrativos($articulos)
     {
-        echo "<h2>¡Los más lucrativos!</h2>";
+        echo "<h1>¡Los más lucrativos!</h1>";
 
         usort($articulos, function ($a, $b) {
-            $beneficioA = ($a->precio - $a->coste) * $a->contador;
-            $beneficioB = ($b->precio - $b->coste) * $b->contador;
+            $beneficio1 = ($a->precio - $a->coste) * $a->cantidad;
+            $beneficio2 = ($b->precio - $b->coste) * $b->cantidad;
 
-            return $beneficioB - $beneficioA;
+            return $beneficio2 - $beneficio1;
         });
 
         foreach ($articulos as $articulo) {
-            $beneficio = ($articulo->precio - $articulo->coste) * $articulo->contador;
+            $beneficio = ($articulo->precio - $articulo->coste) * $articulo->cantidad;
             echo "{$articulo->nombre} - Beneficio: {$beneficio}€<br>";
         }
     }
