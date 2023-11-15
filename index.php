@@ -1,5 +1,3 @@
-
-
 <?php
 //Link a github: https://github.com/trisml/Examen_DWES_3.0.git
 require_once 'vista.php';
